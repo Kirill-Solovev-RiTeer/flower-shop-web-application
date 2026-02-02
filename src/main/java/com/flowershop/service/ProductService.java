@@ -40,4 +40,11 @@ public class ProductService {
         product.setPrice(dto.getPrice());
         return productRepository.save(product);
     }
+
+    public void deleteProduct(int id){
+        Product product  = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
+
+        productRepository.delete(product);
+    }
 }
