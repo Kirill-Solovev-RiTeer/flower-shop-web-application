@@ -31,4 +31,13 @@ public class ProductService {
         product.setPrice(dto.getPrice());
         return productRepository.save(product);
     }
+
+    public Product updateProduct(int id, ProductCreateDto dto){
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
+
+        product.setName(dto.getName());
+        product.setPrice(dto.getPrice());
+        return productRepository.save(product);
+    }
 }
