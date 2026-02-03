@@ -1,6 +1,7 @@
 package com.flowershop.service;
 
 import com.flowershop.dto.ProductCreateDto;
+import com.flowershop.dto.ProductResponseDto;
 import com.flowershop.exception.ProductNotFoundException;
 import com.flowershop.entity.Product;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,18 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public List<ProductResponseDto> getAllProducts() {
+        return productRepository.findAll()
+                .stream()
+                .map(this::mapToDto)
+                .toList();
     }
 
-    public Product getProductById(int id) {
-        return productRepository.findById(id)
+    public ProductResponseDto getProductById(int id) {
+        Product product = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
+
+        return mapToDto(product);
     }
     public Product createProduct(ProductCreateDto dto){
         Product product = new Product();
@@ -46,5 +52,13 @@ public class ProductService {
                 .orElseThrow(() -> new ProductNotFoundException(id));
 
         productRepository.delete(product);
+    }
+
+    private ProductResponseDto mapToDto(Product product) {
+        return new ProductResponseDto(
+                product.getId(),
+                product.getName(),
+                product.getPrice()
+        );
     }
 }

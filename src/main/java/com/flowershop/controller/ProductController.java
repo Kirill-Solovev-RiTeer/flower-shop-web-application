@@ -1,6 +1,7 @@
 package com.flowershop.controller;
 
 import com.flowershop.dto.ProductCreateDto;
+import com.flowershop.dto.ProductResponseDto;
 import com.flowershop.entity.Product;
 import com.flowershop.service.ProductService;
 import jakarta.validation.Valid;
@@ -21,12 +22,12 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getProducts(){
+    public List<ProductResponseDto> getProducts(){
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-    public Product getProduct(@PathVariable int id){
+    public ProductResponseDto getProduct(@PathVariable int id){
         return productService.getProductById(id);
     }
 
