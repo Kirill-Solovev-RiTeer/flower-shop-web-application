@@ -6,6 +6,7 @@ import com.flowershop.dto.UserRegisterRequest;
 import com.flowershop.entity.User;
 import com.flowershop.service.JwtService;
 import com.flowershop.service.UserService;
+import com.flowershop.util.SecurityUtils;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
