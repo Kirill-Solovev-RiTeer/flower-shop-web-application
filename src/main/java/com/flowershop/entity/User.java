@@ -2,6 +2,9 @@ package com.flowershop.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -25,6 +28,15 @@ public class User {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_favorites",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+
+    private Set<Product> favoriteProducts = new HashSet<>();
 
     public User(){
         this.createdAt = LocalDateTime.now();
@@ -59,5 +71,7 @@ public class User {
     public void setName(String name) { this.name = name; }
 
 
-
+    public Collection<Product> getFavoriteProducts() {
+        return favoriteProducts;
+    }
 }

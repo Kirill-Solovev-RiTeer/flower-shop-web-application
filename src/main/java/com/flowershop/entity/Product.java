@@ -1,6 +1,10 @@
 package com.flowershop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -14,6 +18,10 @@ public class Product {
     private String name;
 
     private int price;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "favoriteProducts")
+    private Set<User> userWhoFavorited = new HashSet<>();
 
     public Product(){
 
