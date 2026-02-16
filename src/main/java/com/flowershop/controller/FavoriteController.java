@@ -1,12 +1,14 @@
 package com.flowershop.controller;
 
 
+import com.flowershop.dto.ProductResponseDto;
 import com.flowershop.entity.Product;
 import com.flowershop.service.FavoriteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/favorites")
@@ -19,14 +21,14 @@ public class FavoriteController {
     }
 
     @PostMapping("/{productId}")
-    public ResponseEntity<?> addToFavoriteS(@PathVariable int productId) {
+    public ResponseEntity<String> addToFavoriteS(@PathVariable int productId) {
 
         favoriteService.addToFavorites(productId);
         return ResponseEntity.ok("Added to favorites");
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Product>> getFavoriteProducts() {
+    public ResponseEntity<Set<ProductResponseDto>> getFavoriteProducts() {
         return ResponseEntity.ok(favoriteService.getFavorites());
     }
 

@@ -71,7 +71,7 @@ public class User {
     public void setName(String name) { this.name = name; }
 
 
-    public Collection<Product> getFavoriteProducts() {
+    public Set<Product> getFavoriteProducts() {
         return favoriteProducts;
     }
 }
