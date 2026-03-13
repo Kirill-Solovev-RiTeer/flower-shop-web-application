@@ -12,7 +12,7 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @Column(nullable = false)
     private String name;
@@ -23,16 +23,14 @@ public class Product {
     @ManyToMany(mappedBy = "favoriteProducts")
     private Set<User> userWhoFavorited = new HashSet<>();
 
-    public Product(){
-
-    }
+    public Product(){}
 
     public Product(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -44,7 +42,7 @@ public class Product {
         return price;
     }
 
-    public void  setId(Integer id) {
+    public void  setId(int id) {
         this.id = id;
     }
 
