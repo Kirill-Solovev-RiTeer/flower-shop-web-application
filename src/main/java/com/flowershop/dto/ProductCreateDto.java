@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class ProductCreateDto {
 
-    @NotBlank(message = "Product name cannot be empty")
+    @NotBlank(message = "Имя продукта не может быть пустым")
     private String name;
 
     @Min(value = 1, message = "Price must be greater than 0")
